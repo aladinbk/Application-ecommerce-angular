@@ -1,0 +1,269 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+
+    <div class="content-wrapper">
+        <div *ngIf="curentOffre">
+            <div class="panel panel-default" *ngIf="mode==0"> 
+             <div class="panel-heading"> Fiche du Offre : {{curentOffre.name}}
+              <span class="glyphicon glyphicon-edit pull-right btn" (click)="OnEditOffre()"></span>
+             </div>
+             <div class="panel-body">
+               <div class="col-md-5">
+                 <img class="img-thumbnail img-rounded btn"  src="{{this.catalservice.host+'/photoOffres/'+curentOffre.id +'?ts='+getTS()}}"/>       
+                   
+                 <div>      
+                         <button *ngIf="!editPhoto" (click)="OnEditPhoto(curentOffre)">
+                           <span class="glyphicon glyphicon-edit"></span>
+                         </button>
+               
+                         <span *ngIf="editPhoto">
+                           <input type="file" (change)="onSelectedFile($event)">
+                             <button class="btn btn-success btn-sm" (click)="uploadPhoto()">
+                               <span class="glyphicon glyphicon-upload"></span>
+                             </button>
+                          {{progress}}
+                         </span>
+                   </div>
+           
+           <div>
+             <!--
+            <form #f="ngForm" (ngSubmit)="onAddOffreToCaddy(curentOffre)">
+             <label class="control-label">Quantité :</label>
+             <input type="number" name="quantity"  [(ngModel)]="curentOffre.quantity"  ngModel style="width: 40px">
+             <button class="glyphicon glyphicon-shopping-cart"></button>
+            </form>-->
+           </div>
+           </div>
+           
+           <div class="col-md-7">
+            <div class="panel panel-default">
+             <div class="panel-body">
+              <label>nom : {{curentOffre.name}}</label>
+             </div>
+               <div class="panel-body"><label>Description :{{curentOffre.description}}</label></div>
+               <div class="panel-body"><label>Prix sans commission :{{curentOffre.currentprice | number}}</label></div>
+              </div>
+           </div>
+           </div>
+           </div>
+           <div *ngIf="mode==1">
+           <form #f="ngForm" (ngSubmit)="OnUpdateOffre(f.value)">
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Nom
+                          <small></small>
+                        </h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                          <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                  title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                
+                        </div>
+                        <!-- /. tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body pad">
+                        <div class="form-group">
+                          <input class="form-control"  type="text" name="name"ngModel [(ngModel)]="curentOffre.name">
+  
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.box -->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="box">
+                        <div class="box-header">
+                          <h3 class="box-title">Lieu du Deal
+                            <small></small>
+                          </h3>
+                          <!-- tools box -->
+                          <div class="pull-right box-tools">
+                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                              <i class="fa fa-minus"></i></button>
+                  
+                          </div>
+                          <!-- /. tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body pad">
+                          <div class="form-group">
+                            <input class="form-control"  type="text" name="lieu" ngModel [(ngModel)]="curentOffre.lieu">
+  
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.box -->
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="box">
+                          <div class="box-header">
+                            <h3 class="box-title">Description
+                              <small></small>
+                            </h3>
+                            <!-- tools box -->
+                            <div class="pull-right box-tools">
+                              <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                      title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                    
+                            </div>
+                            <!-- /. tools -->
+                          </div>
+                          <!-- /.box-header -->
+                          <div class="box-body pad">
+                            <div class="form-group">
+                              <textarea class="textarea" placeholder="Place some text here"
+                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="description" ngModel [(ngModel)]="curentOffre.description"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.box -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="box">
+                            <div class="box-header">
+                              <h3 class="box-title">Prix Réel
+                                <small></small>
+                              </h3>
+                              <!-- tools box -->
+                              <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                        title="Collapse">
+                                  <i class="fa fa-minus"></i></button>
+                      
+                              </div>
+                              <!-- /. tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body pad">
+                              <div class="form-group">
+                                <input class="form-control"  type="number" name="currentprice" ngModel [(ngModel)]="curentOffre.currentprice">
+        
+                              </div>
+                            </div>
+                          </div>
+                          <!-- /.box -->
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                            <div class="box">
+                              <div class="box-header">
+                                <h3 class="box-title">Comission en pourcentage
+                                  <small></small>
+                                </h3>
+                                <!-- tools box -->
+                                <div class="pull-right box-tools">
+                                  <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                          title="Collapse">
+                                    <i class="fa fa-minus"></i></button>
+                        
+                                </div>
+                                <!-- /. tools -->
+                              </div>
+                              <!-- /.box-header -->
+                              <div class="box-body pad">
+                                <div class="form-group">
+                                  <input class="form-control"  type="number" name="comission" ngModel [(ngModel)]="curentOffre.comission">
+          
+                                </div>
+                              </div>
+                            </div>
+                            <!-- /.box -->
+                            </div>
+                        </div>
+                     
+                          <div class="row">
+                              <div class="col-md-12">
+                                <div class="box">
+                                  <div class="box-header">
+                                    <h3 class="box-title">Date début
+                                      <small></small>
+                                    </h3>
+                                    <!-- tools box -->
+                                    <div class="pull-right box-tools">
+                                      <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                              title="Collapse">
+                                        <i class="fa fa-minus"></i></button>
+                            
+                                    </div>
+                                    <!-- /. tools -->
+                                  </div>
+                                  <!-- /.box-header -->
+                                  <div class="box-body pad">
+                                    <div class="form-group">
+                                      <input class="form-control"  type="date" name="date_debut" ngModel [(ngModel)]="curentOffre.date_debut">
+              
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- /.box -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <div class="box">
+                                    <div class="box-header">
+                                      <h3 class="box-title">Date fin
+                                        <small></small>
+                                      </h3>
+                                      <!-- tools box -->
+                                      <div class="pull-right box-tools">
+                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                                title="Collapse">
+                                          <i class="fa fa-minus"></i></button>
+                              
+                                      </div>
+                                      <!-- /. tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body pad">
+                                      <div class="form-group">
+                                        <input class="form-control"  type="date" name="date_fin" ngModel [(ngModel)]="curentOffre.date_fin">
+                
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- /.box -->
+                                  </div>
+                              </div>
+  
+
+ 
+
+          
+           
+           <div class="form-group">
+           <label class="control-label">Si tu veux que ce deal est classé selon les deals les plus demandés check this :</label>
+           <input type="checkbox" name="promotion" style="width:30px;height:30px;" ngModel [(ngModel)]="curentOffre.promotion" class="form-control">
+           </div>
+           
+
+           
+           <div class="form-group">
+           <label class="control-label">Si tu veux que ce deal est encore trouvé check this :</label>
+           <input type="checkbox" name="available" style="width:30px;height:30px;" ngModel [(ngModel)]="curentOffre.available" class="form-control">
+
+          </div>
+          <button class="btn btn-primary pull-right" type="submit">Update</button>
+
+           </form>
+           </div>
+           </div>
+           
+</div>
+</div>
+

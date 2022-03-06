@@ -1,0 +1,202 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+<section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Découvrer Nos Catégories</h3>
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa  fa-wrench"></i></button>
+                  </div>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+                   <div class="row"> 
+                    <div class="box-body">
+                      <div class="row">
+                         <div class="col-md-12">
+                      <div>
+                            <ul class="list-group list-group-horizontal" *ngIf="categories">
+                             <li class="list-group-item clickable" [ngClass]="currentcategorie==c?'active':''" (click)="getOffresByCat(c)" *ngFor="let c of categories._embedded.categories">
+                             {{c.name}}
+                             </li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+                 </div>
+              </div>
+              </div>
+             
+              </div>
+          </div>
+        </div>
+ </section>
+
+
+<!--Show Deals En Cours Dans Un Tableau-->
+<div class="container">
+    <div class="panel panel-primary">
+          <div class="panel-heading">Deals En Cours</div>
+                        
+                            <div class="panel-body">
+                              <button class="btn btn-danger" (click)="gettousoffres()">Show Deals</button>
+                            </div>
+                            <div class="panel-body">
+                            <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+                            <div class="form-group">
+                            <label>Nom du Produit : </label>
+                            <input type="text" name="keyword" ngModel>
+                            <button type="submit" class="glyphicon glyphicon-search"></button>
+                            </div>
+                            </form>  
+                            <table *ngIf="offres" class="table table-striped">
+                               <tr>
+                                <th>ID</th><th>NAME</th><th>Description</th><th>Photo Name</th><th>Photo</th><th>Prix Actuel</th><th>Promotion</th><th>Actions</th>
+                               </tr>
+                             <tr *ngFor="let o of offres._embedded.offreses">
+                               <td>{{o.id}}</td>
+                               <td>{{o.name}}</td>
+                               <td>{{o.description}}</td>
+                               <td>{{o.photoName}}</td>
+                               <td><img class="img-thumbnail img-rounded btn" (click)="onOffresDetails(o)"  height="100" width="100" src="{{this.catService.host+'/photoOffres/'+o.id +'?ts='+getTS()}}"/></td>
+                               <td>{{o.currentprice|number:'0.00'}} DT</td>
+                               <td>{{o.comission}}%</td>
+                           
+                              <td>
+                                
+                                  <a (click)="onDeleteOffre(o)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                  </a>    
+                             
+                               </td>
+                             </tr>
+                            </table>
+                            <ul *ngIf="pages" class="nav nav-pills">
+                             <li class="clickable" [ngClass]="i==currentPage?'active':''" *ngFor="let p of pages; let i=index">
+                              <a (click)="onPageoffres(i)">{{i}}</a> 
+                             </li>
+                            </ul>
+                            </div>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-md-12">
+      <div class="box"> 
+        <div *ngIf="offres">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{title}}</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-wrench"></i></button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box">               
+                             <div *ngIf="offres">
+                              <div *ngFor="let o of offres._embedded.offreses">
+                               <div class="col-md-3">
+                                <div class="panel panel-default heighted">
+                                 <div class="panel-heading">{{o.name}}</div>
+                                  <div class="panel-body">
+                                   <img class="img-thumbnail img-rounded btn" (click)="onOffresDetails(o)"  height="150" src="{{this.catService.host+'/photoOffres/'+o.id +'?ts='+getTS()}}"/>       
+                                       <div style="position: relative; float: right;">
+                                          <button class="btn btn-danger" (click)="onOffresDetails(o)">VOIR LE DEAL</button>
+                                        </div>
+                
+                                        <div *ngIf="isAdmin()">
+                                        <p>
+                                        <button (click)="OnEditOffre(o)">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
+                                        </p>
+                  
+                                        <p *ngIf="editOffre && curentOffre==o">
+                                        <input type="file" (change)="onSelectedFile($event)">
+                                        <button class="btn btn-success" (click)="uploadPhoto()">Upload</button>
+                                        {{progress}}
+                                       </p>
+                                       </div>
+
+                                       <div>{{o.description}}</div> 
+                                       <div> <label> Prix Actuel : {{o.currentprice|number:'0.00'}} DT</label></div>
+                                       <div class="container">
+                                       <p *ngIf="o.promotion">
+                                       <a href="">
+                                       </a>
+                                       </p>
+                
+                                       <p *ngIf="o.selected">
+                                     
+                                       </p>
+                                       <p>
+                                      <a *ngIf="o.available">
+                                      
+                                     </a>
+                                     </p>
+                                    </div>
+                        <!--<div>
+                                <form #f="ngForm" (ngSubmit)="OffreToCaddy(o)">
+                                 <label>J'en Profite : </label>
+                                  <button type="submit" class="btn btn-danger" name="quantity"  ngModel style="width: 40px" [(ngModel)]="o.quantity">Add to Caddy </button>
+                                </form>
+                        </div>-->
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </section>
+
+            </div>
+            <!-- /.col -->
+
+          </div>
+          <!-- /.row -->
+        </div>
+
+
+
+
+      </div>
+        <!-- /.box-footer -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+        <!-- /.row -->
+     
+
+</div>
+</div>
+<router-outlet></router-outlet>

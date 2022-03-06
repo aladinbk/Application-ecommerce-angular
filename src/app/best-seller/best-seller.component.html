@@ -1,0 +1,131 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+<div class="container">
+    <div class="col-xs-4">
+ 
+      <div>
+      <button type="submit" class="btn btn-danger" (click)="addclient()" >add client</button>
+      </div>
+      <br>
+
+</div>
+</div>
+<div class="container">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3>Chercher un client</h3>         
+  
+          <div class="box-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <div>
+                <form #f="ngForm" (ngSubmit)="f.form.valid && onChercher(f.value)">
+                <input type="text" name="keyword" ngModel class="form-control pull-right" placeholder="Search">
+                <button class="btn btn-default" ><i class="fa fa-search"></i></button>
+              </form> 
+            </div>
+          
+            </div>
+          </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <div *ngIf="clients">
+                <div *ngFor="let c of clients._embedded.clients">
+                    <div class="col-md-4 ftco-animate">
+                       <div class="box">
+                              <div class="col-4" >
+                               <div class="single-news-box">
+                                <div class="news-box-bg">
+                                   
+      
+        
+                      <div class="text py-3 pb-4 px-3 text-center">
+                         <h3 style="color: blue;">Fiche client</h3>
+                          <div class="d-flex">
+                            <div>
+                              <p><span>{{c.id}}</span></p>
+                              <p><span>{{c.name}}</span></p>
+                              <p><span>{{c.email}}</span></p>
+                              <p><span>{{c.adresse}}</span></p>
+                              <p><span>{{c.phonenumber}}</span></p>
+
+                                
+                            </div>
+                      
+                      </div>
+                         
+                           </div>
+                     
+      
+                       </div><!--/.team-box-bg-->
+                    
+                     </div><!--/.single-news-box-->
+                   </div><!--.col-->
+                
+      
+     
+         </div>
+         
+       </div>                 
+      </div>
+      
+      
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Nos Clients</h3>
+
+       
+    
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-bordered">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Adresse</th>
+            <th>Phone</th>
+            <th>role</th>
+            <th>Actions</th>
+          </tr>
+          <tr *ngFor="let c of data">
+            <td>{{c.id}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.email}}</td>
+            <td>{{c.adresse}}</td>
+            <td>{{c.phonenumber}}</td>
+            <td [ngStyle]="{'color':c.role =='Admin' ?  'rgb(94, 208, 99)' :c.role === 'Client' ? '#f44336' :'#6495ED' }">{{c.role}}</td>
+
+            <td> 
+              
+                <a (click)="onDeleteclient(c)" class="clickable">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </a>                
+         
+              <a (click)="oneditclient(c.id)" class="clickable">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </a>                
+        </td>
+
+          </tr>
+        
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+</div>
+</div>
+

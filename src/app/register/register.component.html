@@ -1,0 +1,133 @@
+<div class="wrapper">
+  <div class="content-wrapper">
+    <section class="content">
+      <div class="login-box">
+        <div class="login-logo">
+          <img src="assets/logo_ledeal-01.png" style="width:150px;height:150px;">
+        </div>
+        <!-- /.login-logo -->
+
+
+        <div class="register-box-body">
+          <p class="login-box-msg">Register a new client</p>
+
+          <form #f="ngForm" (ngSubmit)="f.form.valid && register()">
+            <div class="form-group has-feedback">
+              <input type="text"
+                     class="form-control" placeholder="Nom complet"
+                     required name="name" [(ngModel)]="client.name" #name="ngModel">
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+              <small class="text-danger" *ngIf="f.submitted && name.invalid">
+                Nom complet réquis
+              </small>
+            </div>
+
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control" placeholder="Téléphone"
+                     required name="phonenumber" [(ngModel)]="client.phonenumber"
+                     #phone="ngModel" minlength="8" maxlength="8"
+                     appNumberOnly>
+              <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+
+              <small class="text-danger" *ngIf="f.submitted &&
+               phone.invalid">
+                <div *ngIf="phone.errors['required']">
+                  Téléphone réquis
+                </div>
+                <div *ngIf="phone.errors['minlength']">
+                  Téléphone doit contenir 8 chiffres
+                </div>
+              </small>
+            </div>
+
+            <div class="form-group has-feedback">
+              <input type="text"
+                     class="form-control" placeholder="Adresse"
+                     required name="adresse" [(ngModel)]="client.adresse"
+                     #adress="ngModel">
+              <span class="glyphicon glyphicon-home form-control-feedback"></span>
+
+              <small class="text-danger" *ngIf="f.submitted && adress.invalid">
+                Adresse réquis
+              </small>
+            </div>
+
+
+            <div class="form-group has-feedback">
+              <input type="email" class="form-control" placeholder="Email"
+                     email required name="mail" [(ngModel)]="client.email"
+                     #mail="ngModel">
+              <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
+              <small class="text-danger" *ngIf="f.submitted && mail.invalid">
+              <div *ngIf="mail.errors['required']">
+                Email réquis
+              </div>
+              <div *ngIf="mail.errors['email']">
+                Email invalid
+              </div>
+            </small>
+
+              <small class="text-danger" *ngIf="existEmail">
+
+                 {{existEmail}}
+
+
+              </small>
+            </div>
+
+
+            <div class="form-group has-feedback">
+              <input type="password" class="form-control"
+                     placeholder="Mot de passe" required
+                     name="password" [(ngModel)]="client.password" #pwd="ngModel">
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+              <small class="text-danger" *ngIf="f.submitted && pwd.invalid">
+                Mot de passe réquis
+              </small>
+            </div>
+            <div class="form-group has-feedback">
+              <input type="password" class="form-control"
+                     placeholder="Confirmer mot de passe"
+                     name="confirm"
+                     [(ngModel)]="confirmPwd" #pwd2="ngModel"
+                     [pattern]="client.password" required>
+              <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+
+              <small class="text-danger" *ngIf="f.submitted && pwd2.invalid">
+                <div *ngIf="pwd2.errors['required']">
+                  Confirmer mot de passe réquis
+                </div>
+                <div *ngIf="pwd2.errors['pattern']">
+                  Les mots de passe ne sont pas identiques
+                </div>
+              </small>
+
+            </div>
+
+            <div class="row">
+              <div class="col-xs-8">
+
+              </div>
+              <!-- /.col -->
+              <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">S'inscrire</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+
+
+          <a routerLink="/login" class="text-center">I already have a account</a>
+        </div>
+        <!-- /.form-box -->
+        <!-- /.register-box -->
+
+        <!-- /.login-box-body -->
+      </div>
+
+    </section>
+  </div>
+</div>

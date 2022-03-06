@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+  <div class="content-wrapper">
+    <section class="content">
+      <div class="container">
+       
+        <!-- /.login-logo -->
+  
+  
+        <div class="register-box-body">
+          <p class="login-box-msg">Modifier la categorie</p>
+  
+          <form #f="ngForm" (ngSubmit)="f.form.valid && update()">
+              <div class="form-group">
+                <label><h4> Id Categorie :</h4></label>  
+                <input type="text"
+                         class="form-control" 
+                          name="id_c" [(ngModel)]="category.id_c" readonly>
+      
+                </div>
+                <div class="form-group">
+                    <label><h4> Name Categorie :</h4></label>  
+                    <input type="text"
+                           class="form-control" 
+                            name="name" [(ngModel)]="category.name" >
+        
+                  </div>
+  
+                  <div class="form-group">
+                 <label><h4> Description Categorie :</h4></label>  
+                      <input type="text"
+                             class="form-control" 
+                              name="description" [(ngModel)]="category.description" >
+          
+                    </div>
+  
+            <div class="row">
+             
+              <!-- /.col -->
+              <div class="col-xs-2">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Update</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+        </div>
+        <!-- /.form-box -->
+        <!-- /.register-box -->
+  
+        <!-- /.login-box-body -->
+      </div>
+  
+    </section>
+  </div>
+  </div>
+  

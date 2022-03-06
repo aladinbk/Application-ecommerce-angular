@@ -1,0 +1,295 @@
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+    <div class="container">
+       <div class="row">
+           <div class="col-12">
+        <app-header></app-header>
+           </div>
+       </div>
+    </div>
+ 
+    
+    <!-- <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <app-banner></app-banner>
+          </div>
+      </div>
+   </div>-->
+   
+
+
+    <div class="container">
+    <section class="content">
+    <div class="row">
+    <div class="col-md-4">
+        <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Catégories</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-8">
+                 <div>
+                       <ul class="list-group list-group-horizontal" *ngIf="categories">
+                        <li class="list-group-item clickable" [ngClass]="currentcategorie==c?'active':''" (click)="getOffresByCat(c)" *ngFor="let c of categories._embedded.categories">
+                        {{c.name}}
+                        </li>
+                       </ul>
+                   </div>
+               </div>
+             </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+           </div>
+
+
+    </div>
+    <div class="col-md-8" >
+        <!-- PRODUCT LIST -->
+        <div class="box box-primary" id="bann">
+       
+          <!-- /.box-header -->
+          <div class="box-body">
+              <app-banner></app-banner>
+          </div>
+          <!-- /.box-body -->
+          </div>
+        <!-- /.box -->
+      </div>
+</div>
+</section>
+</div> 
+
+
+<div class="container">
+  <section class="content">
+  <div class="row">
+  <div class="col-md-4">
+      <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Méthodes de paiements</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+              <div class="row">
+                  <div class="col-md-8">
+               <div>
+                     <img src="assets/master.jpg">
+                 </div>
+             </div>
+           </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.box-body -->
+         </div>
+
+
+  </div>
+  <div class="col-md-12" >
+      <!-- PRODUCT LIST -->
+      <div class="box box-primary" id="bann">
+     
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="box box-widget">
+            <div class="box-header with-border">
+              <h4>Deal du jour</h4>
+  
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div *ngIf="offres">
+                    <div *ngFor="let o of offres">
+                      
+                        <div *ngIf="isaujordui(o) && o" > 
+                          
+                      <div class="col-md-4 ftco-animate">
+                           <div class="box">
+                             
+                              <div class="product">
+                                  <div class="col-4" >
+                                   <div class="single-news-box">
+                                    <div class="news-box-bg">
+                                       <div class="promoBox warning-box danger-ribbon" id="box">
+                                          <aside><p>{{o?.comission}}%</p></aside>
+                                           <img class="clickable" id="img" src="{{this.catService.host+'/photoOffres/'+o.id +'?ts='+getTS()}}" alt="blog image">
+                                        </div>
+          
+            
+                           <div class="text py-3 pb-4 px-3 text-center">
+                              <h3>{{o?.name}}</h3>
+                              <div class="d-flex">
+                                <div class="pricing">
+                                    <p>  <span class="price-sale">{{o?.description}}</span></p> 
+                                   <p> <i class="fa fa-map-marker" aria-hidden="true">{{o?.lieu}}</i></p>
+                                </div>
+                              </div>
+                               </div>
+                         
+          
+                           </div><!--/.team-box-bg-->
+                        
+                         </div><!--/.single-news-box-->
+                       </div><!--.col-->
+                    
+                       <button type="btn btn-danger" (click)="onOffresDetails(o)">Show deal</button>
+
+             </div>
+             </div>
+             
+           </div>              
+           </div>  
+          </div>
+          
+          </div>
+            </div>
+            <!-- /.box-body -->
+           
+            <!-- /.box-footer -->
+          </div>
+
+        </div>
+        <!-- /.box-body -->
+        </div>
+      <!-- /.box -->
+    </div>
+</div>
+</section>
+</div> 
+
+<div class="box-body">
+<div class="container">
+    <div class="box box-widget widget-user" id="contenu">
+        <div class="pull-right" >
+            <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+              
+              <input type="text" name="keyword" ngModel class="lnr lnr-magnifier" placeholder="Chercher un deal" id="search">
+              <button class="btn btn-info" id="btn_search">RECHERCHER</button>
+            </form>
+            
+            </div>
+      <div class="widget-user-header bg-aqua-active" id="hed">
+            <!-- /.widget-user-image -->
+          
+            <h4>Deals EN Cours</h4>
+       
+      </div>
+         <section class="ftco-section">
+          
+      <div class="container">
+          <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+            </div>
+          </div>   		
+        </div>
+        <div *ngIf="offres">
+          <div *ngFor="let o of offres">
+              <div *ngIf="isAvailabledoffres(o)"> 
+            <div class="col-md-4 ftco-animate">
+                 <div class="box">
+                   
+                    <div class="product">
+                        <div class="col-4" >
+                         <div class="single-news-box">
+                          <div class="news-box-bg">
+                             <div class="promoBox warning-box danger-ribbon" id="box">
+                                <aside><p>{{o.comission}}%</p></aside>
+                                 <img class="clickable" id="img" src="{{this.catService.host+'/photoOffres/'+o.id +'?ts='+getTS()}}" alt="blog image"  (click)="onOffresDetails(o)">
+                              </div>
+
+  
+                 <div class="text py-3 pb-4 px-3 text-center">
+                    <h3>{{o.name}}</h3>
+                    <div class="d-flex">
+                      <div class="pricing">
+                          <p>  <span class="price-sale">{{o.description}}</span></p> 
+                         <p> <i class="fa fa-map-marker" aria-hidden="true">{{o.lieu}}</i></p>
+                      </div>
+                    </div>
+                     </div>
+               
+
+                 </div><!--/.team-box-bg-->
+              
+               </div><!--/.single-news-box-->
+             </div><!--.col-->
+          
+
+   </div>
+   </div>
+   
+ </div>              
+ </div>  
+</div>
+
+
+</div>
+     
+        
+</section>         
+    </div>
+
+    </div>
+   </div>
+   <div class="row" style="display: flex; justify-content:flex-end">
+      <div class="col-md-2">
+        <!-- DIRECT CHAT -->
+        <div class="box box-warning direct-chat direct-chat-warning">
+          <div class="box-header with-border">
+            <h3 class="box-title">Direct Chat</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts"
+                      data-widget="chat-pane-toggle">
+                <i class="fa fa-comments"></i></button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+      
+            <!-- /.direct-chat-pane -->
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <form  method="post">
+              <div class="input-group">
+                <span class="input-group-btn">
+                      <a href="https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=16979870-20fc-4a76-b3f0-1e0d8c11cc9c&serviceInstanceID=725738e7-c0d9-4102-a3c3-35f6f2a75d20">Chat</a>
+                    </span>
+                    
+
+              </div>
+            </form>
+          </div>
+          <!-- /.box-footer-->
+        </div>
+        <!--/.direct-chat -->
+      </div>
+      <!-- /.col -->
+
+ 
+      <!-- /.col -->
+    </div>
+    <app-foot></app-foot>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<router-outlet></router-outlet>

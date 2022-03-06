@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <app-header></app-header>
+  <div class="row">
+  <div class="col-12">
+
+      <div *ngIf="curentOffre">
+          <div class="panel panel-default"> 
+           <div class="panel-body">
+             <div class="col-md-5">
+               <img class="img-thumbnail img-rounded btn"  src="{{this.catalservice.host+'/photoOffres/'+curentOffre.id +'?ts='+getTS()}}"/>       
+                 
+         
+         <div>
+           <!--
+          <form #f="ngForm" (ngSubmit)="onAddOffreToCaddy(curentOffre)">
+           <label class="control-label">Quantité :</label>
+           <input type="number" name="quantity"  [(ngModel)]="curentOffre.quantity"  ngModel style="width: 40px">
+           <button class="glyphicon glyphicon-shopping-cart"></button>
+          </form>-->
+         </div>
+         </div>
+         
+         <div class="col-md-7">
+          <div class="panel panel-default">
+           <div class="panel-body">
+
+            <div id="title">   
+              {{curentOffre.name}}
+            </div>
+            
+            <div class="col-md-9">
+                    <div class="nav-tabs-custom">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#activity" data-toggle="tab">Description</a></li>
+                        <li><a href="#timeline" data-toggle="tab">Date du Deal</a></li>
+                        <li><a href="#settings" data-toggle="tab">Prix</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="active tab-pane" id="activity">
+                          <!-- Post -->
+                          <div class="post">
+                          
+                            <p>
+                              <label>description</label>
+                              {{curentOffre.description}}
+                            </p>
+                            <p>
+                              <label>Lieu</label>
+                                <i class="fa fa-map-marker" aria-hidden="true">{{curentOffre.lieu}}</i>
+                               
+                            </p>
+                          </div>
+                          <!-- /.post -->
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="timeline">
+                          <!-- The timeline -->
+                          <ul class="timeline timeline-inverse">
+                            <!-- timeline time label -->
+                            <li class="time-label">
+                             <label>Date Début du Deal :</label>
+                              <span class="bg-red">  
+                                  {{curentOffre.date_debut | date: 'dd/MM/yyyy'}}
+                                  </span>
+                            </li>
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                          
+                         
+                          
+                            <li class="time-label">
+                              <label>Date Fin du Deal</label>
+                                  <span class="bg-green">
+                                      {{curentOffre.date_fin | date: 'dd/MM/yyyy'}}
+                                  </span>
+                            </li>
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                         
+                            <!-- END timeline item -->
+                            <li>
+                              <i class="fa fa-clock-o bg-gray"></i>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- /.tab-pane -->
+          
+                        <div class="tab-pane" id="settings">
+<label>Prix actuel</label>
+                            {{curentOffre.currentprice - curentOffre.currentprice * curentOffre.comission / 100 |number:'0.00'}} DT
+          <p></p>
+          <label>Comission</label>
+
+                            -{{curentOffre.comission}}%
+          <p></p> 
+          <label>Ancien prix</label>
+
+                              <del>{{curentOffre.currentprice|number:'0.00'}} DT</del>
+
+                        </div>
+                        <!-- /.tab-pane -->
+                      </div>
+                      <!-- /.tab-content -->
+                    </div>
+                    <!-- /.nav-tabs-custom -->
+                  </div>
+            
+           </div>
+
+           <form #f="ngForm" (ngSubmit)="OffreToCaddy(curentOffre)">
+              <div class="quantity buttons_added">
+                  <input (click)="minusQuantity(curentOffre)" type="button" value="-" class="minus btn btn-danger" >
+                  <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="" ngModel style="width: 80px" [(ngModel)]="curentOffre.quantity">
+                  <input (click)="plusQuantity(curentOffre)" type="button" value="+" class="plus btn btn-success">
+                  <button  type="submit" class="btn btn-warning"  name="quantity"  ngModel style="width: 65px" style="height:30px" [(ngModel)]="curentOffre.quantity"> J'en Profite </button>
+              </div>
+          </form>
+
+          </div>
+         </div>
+         </div>
+         </div>
+ 
+         </div>
+       <!----> 
+         </div>
+         </div>
+
+</div>
+

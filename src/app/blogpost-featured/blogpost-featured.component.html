@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+<div class="container">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+          <h2 class="page-header">Gestion des commandes</h2>
+
+
+        <div class="box-tools">
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-bordered">
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name Deal Commander</th>
+            <th class="text-center">Qte Deal Commander</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Total Amount</th>
+            <th class="text-center">Client ID</th>
+            <th class="text-center">Client name</th>
+            <th class="text-center">Etat du Commande</th>
+            <th class="text-center">Actions</th>
+
+          </tr>
+          <tr *ngFor="let c of data">
+            <td class="text-center">{{c.id}}</td>
+            <td  class="text-center"><div *ngFor="let b of c.achatsItems"> {{b.offres?.name}}</div> </td>
+            <td  class="text-center"><div *ngFor="let b of c.achatsItems"> {{b.quantity}}</div> </td>
+            <td class="text-center">{{c.date | date: 'dd/MM/yyyy'}}</td>
+            <td class="text-center">{{c.totalAmount | number}} DT</td>
+            <td class="text-center">{{c?.client?.id}}</td>
+            <td class="text-center">{{c?.client?.name}}</td>
+            <td class="text-center">{{c.etatcommande}}</td>
+            <td> 
+              <a (click)="oneditcommande(c.id)" class="clickable">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </a>   
+                <a  class="clickable">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </a>              
+        </td>
+          </tr>
+
+          
+        </table>
+
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+
+
+</div>
+</div>
+

@@ -1,0 +1,116 @@
+<!--<nav class="navbar navbar-expand-md navbar-dark bg-blue">
+	<div class="container">
+	  <a class="navbar-brand" href="index.html">
+		<img src="" alt="Angular Project" />
+	  </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarCollapse">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item active">
+			<a class="nav-link" href="#">Home</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">About</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Contact</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Blog</a>
+		  </li>
+		  <li><a routerLink="/login">login</a></li>
+		</ul>
+	  </div>
+	</div>
+  </nav>-->
+
+<div class="conatiner-fluid">
+
+		<section  class="header">
+				<div  class="row pt-4 pb-4" id="home">	
+					<div class="header-left">
+						<ul class="pull-left">
+							<li>
+								<a href="#">
+									<i class="fa fa-phone" aria-hidden="true"></i>  +216 55 989 789
+								</a>
+							</li><!--/li-->
+							<li>
+								<a href="#">
+									<i class="fa fa-location-arrow" aria-hidden="true"></i>Avenue Hédi Nouira Résidence Eiffel 3ème étage a Ennasr 2
+								</a>
+							</li><!--/li-->
+						</ul><!--/ul-->
+					</div><!--/.header-left -->
+
+					<div class="header-right pull-right">
+						<ul>
+
+              <li><a routerLink="/login" *ngIf="!currentUser">
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                Se Connecter</a></li>
+
+              <li><a routerLink="/login" (click)="logout()"  *ngIf="currentUser">
+                <i class="fa fa-sign-out"  aria-hidden="true"></i>
+                Déconnexion</a></li>
+
+							<li>
+								<div class="social-icon">
+									<ul>
+										<li><a href="https://www.facebook.com/ledeal.tn/"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="https://www.facebook.com/ledeal.tn/"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="https://www.instagram.com/ledeal.tn/?hl=fr"><i class="fa fa-instagram"></i></a></li>
+									</ul><!--/.ul -->
+								</div><!--/.social-icon -->
+							</li><!--/li -->
+						</ul><!--/ul -->
+					</div><!--/.header-right -->
+				</div><!--/.container -->	
+	
+			</section><!--/.header-->	
+			<!--header end-->
+			
+			<!--menu start-->
+			<section id="menu">
+				<div class="container">
+					<div class="menubar">
+						<nav class="navbar navbar-default">
+						
+							<!-- Brand and toggle get grouped for better mobile display -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<div>
+									<img src="assets/logo_ledeal-01.png" style="width:150px;height:150px;">
+								</div>
+							</div><!--/.navbar-header -->
+				
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse">
+								<ul class="nav navbar-nav navbar-right">
+									
+									<li class="col-md-3 col-sm-4" style="text-align:center;"><a routerLink="/ledeal.tn"><i class="fa fa-fw fa-home"></i></a>Acceuil</li>
+									<li class="col-md-3 col-sm-4" style="text-align:center;"><a routerLink="/caddies"><i class="fa fa-fw fa-shopping-cart"></i></a>Panier</li>
+									<li class="col-md-3 col-sm-4" style="text-align:center;"><a routerLink="/infosclient"><i class="fa fa-circle-o"></i></a>Mes Informations</li>
+									<li class="col-md-3 col-sm-4" style="text-align:center;"><a routerLink="/expired"><i class="fa fa-fw fa-street-view"></i></a>Deals Expirés</li>
+
+								</ul><!-- / ul -->
+								
+							</div><!-- /.navbar-collapse -->
+						</nav><!--/nav -->
+						
+					</div><!--/.menubar -->
+				</div><!-- /.container -->
+	
+			</section><!--/#menu-->
+			<!--menu end-->
+
+		
+</div> 
+

@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-12">
+      <div class="container">
+         <div class="row">
+             <div class="col-12">
+          <app-header></app-header>
+             </div>
+         </div>
+      </div>
+      <div class="container">
+        <section class="content">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Box Comment -->
+              <div class="box box-widget">
+                <div class="box-header with-border">
+                  <h4>Détail du Offre</h4>
+      
+                  <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div *ngIf="curentOffre">
+                    <div class="panel panel-default" *ngIf="mode==0"> 
+                     <div class="panel-heading"> {{curentOffre.name}}
+                     </div>
+                  <div class="panel-body">
+                    <div class="col-md-5">
+                       <img class="img-thumbnail img-rounded btn"  src="{{this.catalservice.host+'/photoOffres/'+curentOffre.id +'?ts='+getTS()}}"/>  
+                    </div>
+                   
+                   <div class="col-md-7">
+                    <div class="panel panel-default">
+                     <div class="panel-body">
+                      <label>Prix Actuel : {{curentOffre.currentprice|number:'0.00'}} DT</label>
+                     </div>
+                       <div class="panel-body"><label>Description :{{curentOffre.description}}</label></div>
+                    </div>
+                   </div>
+
+                   </div>
+                   </div>
+                   <div *ngIf="mode==1">
+                   <form #f="ngForm" (ngSubmit)="OnUpdateOffre(f.value)">
+                   <div class="form-group">
+                   <label class="control-label">Name :</label>
+                   <input type="text" name="name" ngModel [(ngModel)]="curentOffre.name" class="form-control">
+                   </div>
+                   
+                   <div class="form-group">
+                   <label class="control-label">Description :</label>
+                   <textarea name="description" ngModel [(ngModel)]="curentOffre.description" class="form-control"></textarea>
+                   </div>
+                   
+                   <div class="form-group">
+                   <label class="control-label">Prix :</label>
+                   <input type="text" name="curentPrice" ngModel [(ngModel)]="curentOffre.curentprice" class="form-control">
+                   </div>
+                   
+                   <div class="form-group">
+                   <label class="control-label">Promotion :</label>
+                   <input type="checkbox" name="promotion" ngModel [(ngModel)]="curentOffre.promotion" class="form-control">
+                   </div>
+                   
+                   <div class="form-group">
+                   <label class="control-label">Sélection :</label>
+                   <input type="checkbox" name="selected" ngModel [(ngModel)]="curentOffre.selected" class="form-control">
+                   </div>
+                   
+                   <div class="form-group">
+                   <label class="control-label">Available :</label>
+                   <input type="checkbox" name="available" ngModel [(ngModel)]="curentOffre.available" class="form-control">
+                   </div>
+                   
+                   <button class="btn btn-sucess" type="submit">Update</button>
+                   </form>
+                   </div>
+                   </div>
+                  
+                </div>
+                <!-- /.box-body -->
+             
+          
+                <!-- /.box-footer -->
+              </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.col -->
+          
+            <!-- /.col -->
+          </div>
+      
+        </section>
+       
+       
+      </div>
+
+
+</div>
+</div>
+</div>
+

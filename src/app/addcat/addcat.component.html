@@ -1,0 +1,88 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+<div class="container">
+  <div class="col-md-9 col-sm-6 col-xs-12">
+  <div class="panel panel-default">
+      <div class="box box-default">
+          <form #f="ngForm" (ngSubmit)="onsavecat(f.value)">
+          <div class="box-header with-border">
+            <h3 class="box-title">Ajouter Une Catégorie</h3>
+            
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control"  name="name" [(ngModel)]="name"/>
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+    
+          </div>
+          <p>
+          <button type="button" 
+           class="btn btn-success" style="float: right; width:20% ; padding: 0;" type="submit" 
+           >Save New categorie</button></p>
+    
+          <!-- /.box-body -->
+          </form>
+        </div>
+      </div>
+
+      <h2 class="page-header">Gestion des catégories</h2>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+              <div class="widget-user-image">
+              </div>
+              <!-- /.widget-user-image -->
+            
+            </div>
+            <div class="box-footer no-padding" >
+           
+                  <table *ngIf="categories" class="table table-bordered">
+                       <th>ID</th><th>Nom</th><th>Description</th><th>Actions</th>
+                      
+                    <tr *ngFor="let c of categories._embedded.categories">
+                      <td>{{c.id_c}}</td>
+                      <td>{{c.name}}</td>
+                      <td>{{c.description}}</td>
+                      
+                      <td>     
+                         <a (click)="onDeletecat(c)" class="clickable">
+                           <span class="glyphicon glyphicon-trash"></span>
+                         </a>    
+                         <a (click)="oneditcategory(c.id_c)" class="clickable">
+                            <span class="glyphicon glyphicon-edit"></span>
+                          </a>  
+                      </td>
+                    </tr>
+                    </table>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        <!-- /.col -->
+    
+        
+      </div>
+
+
+    </div>
+
+  </div>
+
+  </div>
+  
+  </div>       

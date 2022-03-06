@@ -1,0 +1,68 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+  <div class="content-wrapper">
+<section class="content">
+    <div class="login-box">
+      <div class="login-logo">
+        <img src="assets/profile.png" style="width:150px;height:150px;">
+      </div>
+      <!-- /.login-logo -->
+
+
+      <div class="register-box-body">
+        <p class="login-box-msg">Vos Infos :</p>
+
+        <form #f="ngForm" (ngSubmit)="f.form.valid && update()">
+          <div class="form-group">
+            <input type="text"
+                   class="form-control" 
+                    name="name" [(ngModel)]="client.name">
+
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control"
+                    name="phonenumber" [(ngModel)]="client.phonenumber"
+                   #phone="ngModel" minlength="8" maxlength="8" appNumberOnly>
+
+           
+          </div>
+
+          <div class="form-group">
+            <input type="text"
+                   class="form-control" 
+                   name="adresse" [(ngModel)]="client.adresse">
+          </div>
+
+
+          <div class="form-group">
+            <input type="email" class="form-control" 
+                   email  name="mail" [(ngModel)]="client.email">
+
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control" 
+                       name="password" [(ngModel)]="client.password">
+
+            </div>
+
+          <div class="row">
+           
+            <!-- /.col -->
+            <div class="col-xs-4">
+              <button  type="submit" [disabled]="f.invalid"
+                class="btn btn-primary btn-block btn-flat">Update</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+      <!-- /.form-box -->
+      <!-- /.register-box -->
+
+      <!-- /.login-box-body -->
+    </div>
+
+  </section>
+  </div>
+  </div>

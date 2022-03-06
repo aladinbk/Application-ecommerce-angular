@@ -1,0 +1,306 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+<div class="container">
+  <div class="col-md-9 col-sm-6 col-xs-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">Ajouter un Nouveau Deal</div>
+      <div class="panel-body">
+            <form #f="ngForm" (ngSubmit)="f.form.valid && onsaveOffre(f.value)">
+                  <div class="row">
+                  <div class="col-md-12">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Nom
+                          <small></small>
+                        </h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                          <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                  title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                
+                        </div>
+                        <!-- /. tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body pad">
+                        <div class="form-group has-feedback">
+                          <input class="form-control"  type="text" name="name" required ngModel>
+                          <small class="text-danger" *ngIf="f.submitted">
+                              Name requis
+                            </small>
+                        </div>
+                       
+                      </div>
+                    </div>
+                    <!-- /.box -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="box">
+                        <div class="box-header">
+                          <h3 class="box-title">Lieu du Deal
+                            <small></small>
+                          </h3>
+                          <!-- tools box -->
+                          <div class="pull-right box-tools">
+                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                              <i class="fa fa-minus"></i></button>
+                  
+                          </div>
+                          <!-- /. tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body pad">
+                          <div class=" form-group has-feedback">
+                            <input class="form-control"  type="text" name="lieu" required ngModel>
+                            <small class="text-danger" *ngIf="f.submitted">
+                                Lieu requis
+                              </small>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.box -->
+                      </div>
+                  </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Description
+                          <small></small>
+                        </h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                          <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                  title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                
+                        </div>
+                        <!-- /. tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body pad">
+                        <div class="form-group has-feedback">
+                          <textarea class="textarea" placeholder="Place some text here"
+                                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="description" required ngModel></textarea>
+                                    <small class="text-danger" *ngIf="f.submitted">
+                                        Description requis
+                                      </small>
+                                  </div>
+                      </div>
+                    </div>
+                    <!-- /.box -->
+                    </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Prix Réel
+                          <small></small>
+                        </h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                          <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                  title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                
+                        </div>
+                        <!-- /. tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body pad">
+                        <div class="form-group has-feedback">
+                          <input class="form-control"  type="number" name="currentprice" required ngModel>
+                          <small class="text-danger" *ngIf="f.submitted">
+                              Prix requis
+                            </small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.box -->
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Comission
+                          <small></small>
+                        </h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                          <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                  title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                
+                        </div>
+                        <!-- /. tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body pad">
+                        <div class="form-group has-feedback">
+                          <input class="form-control"  type="number" name="comission" required ngModel>
+                          <small class="text-danger" *ngIf="f.submitted">
+                              Commission requis
+                            </small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.box -->
+                    </div>
+                </div>
+              
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Date début
+                          <small></small>
+                        </h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                          <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                  title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                
+                        </div>
+                        <!-- /. tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body pad">
+                        <div class="form-group has-feedback">
+                          <input class="form-control"  type="date" name="date_debut" required ngModel>
+                          <small class="text-danger" *ngIf="f.submitted">
+                              DateDebut requis
+                            </small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.box -->
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Date Fin
+                          <small></small>
+                        </h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                          <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                  title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                
+                        </div>
+                        <!-- /. tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body pad">
+                        <div class="form-group has-feedback">
+                          <input class="form-control"  type="date" name="date_fin" required ngModel>
+                          <small class="text-danger" *ngIf="f.submitted">
+                              Datefin requis
+                            </small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.box -->
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <span>
+                        <label class="control-label">Ajouter une Photo</label>
+                        <input type="file" (change)="onSelectedFile($event)"  class="form-control" name="photoName" ngModel>
+                          <button class="btn btn-success btn-sm"  (click)="uploadPhoto()">
+                            <span class="glyphicon glyphicon-upload"></span>
+                          </button>
+                       {{progress}}
+                      </span>
+                </div>
+              
+                <!--<div>
+                    <label>Les Categories Disponibles :</label>
+                  <ul class="list-group " *ngIf="categories" >
+                   <li  *ngFor="let c of categories._embedded.categories" style="background-color:#DCDCDC">
+                    {{c.id}}
+                    {{c.name}}
+                   </li>
+                  </ul>
+                </div>-->
+                <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Associer a Une Catégorie</h3>
+            
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <select class="form-control" style="width: 100%;" name="id_c" [(ngModel)]="id_c">
+                          <option  value="1" selected="selected">Beauté & remise en Forme</option>
+                          <option  value="2">Sortie et loisirs</option>
+                          <option  value="3">Formations et apprentissages</option>
+                          <option  value="4">Hôtels</option>
+                          <option  value="5">Shopping</option>
+                          <option  value="6">voyage</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+                <label>vos categories sont :</label>
+                <table *ngIf="categories" class="table table-striped">
+                  <tr>
+                   <th>ID</th><th>Nom</th>
+                  </tr>
+                <tr *ngFor="let c of categories._embedded.categories">
+                  <td>{{c.id_c}}</td>
+                  <td>{{c.name}}</td>
+                  
+                    
+                 
+                  
+                  
+                  <td>
+                
+                 </td>
+                 
+                </tr>
+                </table>
+
+              </div>
+          
+              <button class="btn btn-sucess" type="submit">Save Deal</button>
+          </form>
+          
+      </div>
+   </div>
+
+
+  </div>
+</div>
+
+
+</div>
+
+</div>
+

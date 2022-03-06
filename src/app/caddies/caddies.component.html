@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="panel-body" *ngIf="selectedOffres">
+    <div class="panel panel-heading">
+      <div class="panel-heading">Votre Panier</div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <tr>
+            <th>Photo</th>
+            <th>Réferences</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th>Commission</th>
+            <th>Prix Remise</th>
+            <th>Total</th>
+            <th>Total Remise</th>
+            <th>Actions</th>
+          </tr>
+          <tr *ngFor="let pi of selectedOffres">
+            <td><img class="img-thumbnail img-rounded btn" height="200" width="200"
+                     src="{{'http://localhost:8583/photoOffres/'+pi.offres.id +'?ts='+getTS()}}"/></td>
+            <td>{{pi?.offres?.name}}</td>
+            <td>{{pi.quantity}}</td>
+            <td>{{pi?.offres?.currentprice | number}}</td>
+            <td>{{pi?.offres?.comission}}%</td>
+            <td>{{pi?.offres?.currentprice - pi?.offres?.currentprice * pi?.offres?.comission /100}}</td>
+            <td>{{pi?.offres?.currentprice * pi?.quantity | number}}</td>
+            <td>{{pi.price | number}}</td>
+           
+           <td>
+            <a (click)="ondeletedeal(pi)" class="clickable">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>  
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6">Total</td>
+            <td >{{getTotal() |number}}</td>
+            <td>{{getTotalRemise() |number}}</td>
+          </tr>
+        </table>
+        <button class="btn btn-success pull-right" (click)="OnNewOrder()">Commander</button>
+      </div>
+    </div>
+  </div>
+</div>

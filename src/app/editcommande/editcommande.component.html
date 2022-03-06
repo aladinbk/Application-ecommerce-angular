@@ -1,0 +1,63 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container">
+     
+      <!-- /.login-logo -->
+
+
+      <div class="register-box-body">
+        <p class="login-box-msg">Modifier la commande</p>
+
+        <form #f="ngForm" (ngSubmit)="f.form.valid && update()">
+            <div class="form-group">
+              <label><h4> Id Commande :</h4></label>  
+              <input type="text"
+                       class="form-control" 
+                        name="id" [(ngModel)]="order.id" readonly>
+    
+              </div>
+              <div class="form-group">
+                  <label><h4> Date Commande :</h4></label>  
+                  <input type="text"
+                         class="form-control" 
+                          name="date" [(ngModel)]="order.date" readonly>
+      
+                </div>
+                <div class="form-group">
+                    <label><h4>Montant Commande : </h4></label>  
+                    <input type="text"
+                           class="form-control" 
+                            name="totalAmount" [(ngModel)]="order.totalAmount" readonly>
+        
+                  </div>
+          <div class="form-group">
+              <label><h4>Etat Commande : </h4></label>  
+            <input type="text"
+                   class="form-control" 
+                    name="etatcommande" [(ngModel)]="order.etatcommande">
+
+          </div>
+
+         
+
+          <div class="row">
+           
+            <!-- /.col -->
+            <div class="col-xs-2">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Update</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+      <!-- /.form-box -->
+      <!-- /.register-box -->
+
+      <!-- /.login-box-body -->
+    </div>
+
+  </section>
+</div>
+</div>
